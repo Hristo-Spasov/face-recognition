@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    user-select: none;
+}
+
+::placeholder {
+    width: 100%;
+    text-align: center;
+}
+
