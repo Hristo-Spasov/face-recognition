@@ -9,25 +9,25 @@ import Register from './components/SignIn/Register';
 import ParticlesBg from 'particles-bg';
 import './App.css';
 
-
+const initialState = {
+  input: '',
+  imageUrl: '',
+  box: {},
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id:'',
+    name: '',
+    email: '',
+    score: 0,
+    joined: ''
+  }
+}
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: '',
-      imageUrl: '',
-      box: {},
-      route: 'signin',
-      isSignedIn: false,
-      user: {
-        id:'',
-        name: '',
-        email: '',
-        score: 0,
-        joined: ''
-      }
-    }
+    this.state = initialState
   }  
 
   loadUser = (data) => {
@@ -66,43 +66,16 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input })
-    const PAT = '76d9f0ea2bf64630b23f756b4f0b84cc';
-    const USER_ID = 'tricky';       
-    const APP_ID = 'face-detection';
-    const IMAGE_URL = this.state.input;
-    const MODEL_ID = 'face-detection';
-    const MODEL_VERSION_ID = '45fb9a671625463fa646c3523a3087d5';
-    const raw = JSON.stringify({
-      "user_app_id": {
-        "user_id": USER_ID,
-        "app_id": APP_ID
-      },
-      "inputs": [
-          {
-              "data": {
-                  "image": {  
-                      "url": IMAGE_URL
-                  }
-              }
-          }
-      ]
-    });
-
-      const requestOptions = {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Authorization': 'Key ' +  PAT 
-          },
-          body: raw
-      };
-
-
-
-      fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-      .then(response => response.json())
-      .then(result => { 
-        if (result) {
+    fetch('http://localhost:3000/imageUrl',{
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body:JSON.stringify({
+        input:this.state.input
+      })
+    })
+    .then(response => response.json())
+      .then(response => { 
+        if (response) {
           fetch('http://localhost:3000/imagescore', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -116,7 +89,7 @@ class App extends Component {
             this.setState(Object.assign(this.state.user, { score: count}))
           })
         }
-        this.displayFaceBox(this.calculateFaceLocation(result))
+        this.displayFaceBox(this.calculateFaceLocation(response))
       })
       .catch(error => console.log('error', error));
   
@@ -125,7 +98,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signin') {
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
