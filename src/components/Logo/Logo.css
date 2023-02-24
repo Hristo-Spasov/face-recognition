@@ -8,15 +8,15 @@
 
     align-items: center;
 
-    width: 80px;
+    width: 7vw; 
 
-    height: 55px;
+    height: 4.67vh;
 
     background-color: rgba(0, 100, 0, 0);
 
     color: white;
 
-    border: 3px solid black;
+    border: 2px solid black;
 
     border-radius: 20px;
 
@@ -25,6 +25,9 @@
 
 
 .inner-element {
+    max-height: 4vh;
+    
+    max-width: 5vw;
 
     display: flex;
 
@@ -42,5 +45,6 @@
 
     transform: translateZ(1.4rem);
 
-}
+    border-radius: 20px;
 
+}

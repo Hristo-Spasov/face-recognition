@@ -46,9 +46,9 @@ class SignIn extends React.Component {
                 <main className="pa4 black-80">
                     <div className="measure">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                        <legend className="f4 fw6 ph0 mh0 center">Sign In</legend>
+                        <legend className="f2 fw6 ph0 mh0 center">Sign In</legend>
                         <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                            <label className="db fw6 lh-copy f4" htmlFor="email-address">Email</label>
                             <input 
                                 onChange={this.onEmailChange} 
                                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
@@ -59,7 +59,7 @@ class SignIn extends React.Component {
                         </div>
                         <div className="mv3">
                             <label 
-                                className="db fw6 lh-copy f6" htmlFor="password">Password
+                                className="db fw6 lh-copy f4" htmlFor="password">Password
                             </label>
                             <input 
                                 onChange={this.onPasswordChange}
@@ -70,16 +70,17 @@ class SignIn extends React.Component {
                             />
                         </div>
                         </fieldset>
-                        <div className="">
+                        <div className="center">
                         <input 
                             onClick={this.onSubmitSignIn} 
                             className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib center" type="submit" 
                             value="Sign in"
                         />
                         </div>
-                        <div className="lh-copy mt3 center">
-                        <p onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
+                        <div className="lh-copy mt3 center ">
+                        <p onClick={() => onRouteChange('register')} className="b f5 link dim black db pointer underline">Register</p>
                         </div>
+                        
                     </div>
                 </main>
             </div>

@@ -5,7 +5,7 @@ import "./Navigation.css"
 const Navigation = ({ onRouteChange, isSignedIn }) => {
         if(isSignedIn) {
             return (
-                <nav className="signOut" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <nav className="signOut">
                     
                     <p onClick={() => onRouteChange('signin')} 
                     className=" f3 ba br4 fltc shadow-2  pointer link dim black ma2">Sign Out</p>
